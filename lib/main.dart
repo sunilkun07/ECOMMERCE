@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/login.dart';
-import 'pages/homepage.dart'; // Ensure this file exists and contains a Homepage widget
+import 'pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,23 +12,56 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
+      title: 'Catalog App',
+      debugShowCheckedModeBanner: false,
+
+      // ✅ Start app from Login Page
+      initialRoute: '/',
+
+      // ✅ Define routes
+      routes: {
+        '/': (context) => const Loginpage(),
+        '/home': (context) => const Homepage(),
+      },
+
+      // ✅ Automatically follow system theme
+      themeMode: ThemeMode.system,
+
+      // ✅ Light Theme
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.deepPurpleAccent,
+          foregroundColor: Colors.white,
+        ),
       ),
-      themeMode: ThemeMode.light,
+
+      // ✅ Dark Theme
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.deepPurpleAccent,
+          foregroundColor: Colors.white,
+        ),
       ),
-      initialRoute: "/login",
-      routes: {
-        "/":(context) => const Homepage(),
-        "/login":(context) => Loginpage(), // Replace with actual Loginpage widget
-        // Add other routes here as needed
-      },
-      debugShowCheckedModeBanner: false,
     );
   }
 }
